@@ -16,6 +16,15 @@ class Languague {
      * @return Response|RedirectResponse
      */
     public function handle(Request $request, Closure $next): Response|RedirectResponse {
-        return $next($request);
+        if ($request->has('lang')) {
+            $lang = $request->lang;
+            app()->setLocale($lang);
+            $response = $next($request);
+            return $response->withCookie(cookie()->forever('lang', $lang));
+        } else {
+            $lang = $request->cookie('lang', 'vi');
+            app()->setLocale($lang);
+            return $next($request);
+        }
     }
 }

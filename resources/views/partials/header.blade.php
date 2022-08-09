@@ -14,6 +14,8 @@
             </div>
         </div>
         <div class="header-nav-right">
+
+            {{-- Notifications --}}
             <div class="header-nav-item">
                 <div class="dropdown header-nav-item-select nav-notification">
                     <div class="toggle-wrapper" id="nav-notification-dropdown" data-bs-toggle="dropdown">
@@ -27,14 +29,14 @@
                         <div class="nav-notification-body">
                             <div class="nav-notification-item ">
                                 <div class="avatar avatar-circle avatar-image"
-                                     style="width: 40px; height: 40px; line-height: 40px;">
+                                    style="width: 40px; height: 40px; line-height: 40px;">
                                     <img src="{{ asset('assets/images/avatars/thumb-8.jpg') }}" alt="">
                                 </div>
                                 <div class="ms-2">
-                                                <span>
-                                                    <span class="fw-bolder text-dark">Jean Bowman </span>
-                                                    <span>invited you to new project.</span>
-                                                </span>
+                                    <span>
+                                        <span class="fw-bolder text-dark">Jean Bowman </span>
+                                        <span>invited you to new project.</span>
+                                    </span>
                                     <div class="font-size-sm fw-bold mt-1">
                                         <i class="feather icon-clock"></i>
                                         <span class="ms-1">4 months ago</span>
@@ -43,12 +45,12 @@
                             </div>
                             <div class="nav-notification-item ">
                                 <div class="bg-primary feather font-size-lg icon-info avatar avatar-circle"
-                                     style="width: 40px; height: 40px; line-height: 40px;"></div>
+                                    style="width: 40px; height: 40px; line-height: 40px;"></div>
                                 <div class="ms-2">
-                                                <span>
-                                                    <span class="fw-bolder text-dark"> </span>
-                                                    <span>Please submit your daily report.</span>
-                                                </span>
+                                    <span>
+                                        <span class="fw-bolder text-dark"> </span>
+                                        <span>Please submit your daily report.</span>
+                                    </span>
                                     <div class="font-size-sm fw-bold mt-1">
                                         <i class="feather icon-clock"></i>
                                         <span class="ms-1">4 months ago</span>
@@ -57,12 +59,12 @@
                             </div>
                             <div class="nav-notification-item ">
                                 <div class="bg-success feather font-size-lg icon-info avatar avatar-circle"
-                                     style="width: 40px; height: 40px; line-height: 40px;"></div>
+                                    style="width: 40px; height: 40px; line-height: 40px;"></div>
                                 <div class="ms-2">
-                                                <span>
-                                                    <span class="fw-bolder text-dark"> </span>
-                                                    <span>Your request has been approved.</span>
-                                                </span>
+                                    <span>
+                                        <span class="fw-bolder text-dark"> </span>
+                                        <span>Your request has been approved.</span>
+                                    </span>
                                     <div class="font-size-sm fw-bold mt-1">
                                         <i class="feather icon-clock"></i>
                                         <span class="ms-1">4 months ago</span>
@@ -71,14 +73,14 @@
                             </div>
                             <div class="nav-notification-item ">
                                 <div class="avatar avatar-circle avatar-image"
-                                     style="width: 40px; height: 40px; line-height: 40px;">
+                                    style="width: 40px; height: 40px; line-height: 40px;">
                                     <img src="{{ asset('assets/images/avatars/thumb-4.jpg') }}" alt="">
                                 </div>
                                 <div class="ms-2">
-                                                <span>
-                                                    <span class="fw-bolder text-dark">Jenifer Ruiz </span>
-                                                    <span>mentioned you in comment.</span>
-                                                </span>
+                                    <span>
+                                        <span class="fw-bolder text-dark">Jenifer Ruiz </span>
+                                        <span>mentioned you in comment.</span>
+                                    </span>
                                     <div class="font-size-sm fw-bold mt-1">
                                         <i class="feather icon-clock"></i>
                                         <span class="ms-1">4 months ago</span>
@@ -87,12 +89,12 @@
                             </div>
                             <div class="nav-notification-item ">
                                 <div class="bg-success feather font-size-lg icon-x-circle avatar avatar-circle"
-                                     style="width: 40px; height: 40px; line-height: 40px;"></div>
+                                    style="width: 40px; height: 40px; line-height: 40px;"></div>
                                 <div class="ms-2">
-                                                <span>
-                                                    <span class="fw-bolder text-dark"> </span>
-                                                    <span>Your request has been rejected.</span>
-                                                </span>
+                                    <span>
+                                        <span class="fw-bolder text-dark"> </span>
+                                        <span>Your request has been rejected.</span>
+                                    </span>
                                     <div class="font-size-sm fw-bold mt-1">
                                         <i class="feather icon-clock"></i>
                                         <span class="ms-1">4 months ago</span>
@@ -106,6 +108,8 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Settings --}}
             <div class="header-nav-item">
                 <div class="header-nav-item-select">
                     <div class="toggle-wrapper" data-bs-toggle="modal" data-bs-target="#quick-view">
@@ -113,41 +117,53 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Languages --}}
             <div class="header-nav-item">
                 <div class="dropdown header-nav-item-select">
                     <div class="toggle-wrapper" id="nav-lang-dropdown" data-bs-toggle="dropdown">
                         <div class="avatar avatar-circle avatar-image"
-                             style="width: 22px; height: 22px; line-height: 22px;">
-                            <img src="{{ asset('assets/images/thumbs/en_US.png') }}" alt="">
+                            style="width: 22px; height: 22px; line-height: 22px;">
+                            @if (!isset($_COOKIE['lang']) && $_COOKIE['lang'] == 'en')
+                                <img src="{{ asset('assets/images/thumbs/en_US.png') }}" alt="{{ __('layout/header.lang') }}">
+                            @else
+                                <img src="{{ asset('assets/images/thumbs/vietnam.png') }}" alt="{{ __('layout/header.lang') }}">
+                            @endif
                         </div>
                     </div>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a href="javascript:void(0)" class="dropdown-item">
+                        <a href="?lang=en" class="dropdown-item" id="en">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-circle avatar-image"
-                                     style="width: 18px; height: 18px; line-height: 18px;">
+                                    style="width: 18px; height: 18px; line-height: 18px;">
                                     <img src="{{ asset('assets/images/thumbs/en_US.png') }}" alt="">
                                 </div>
-                                <span class="ms-2">English</span>
+                                <span class="ms-2">
+                                    {{ __('layout/header.lang-en') }}
+                                </span>
                             </div>
                         </a>
-                        <a href="javascript:void(0)" class="dropdown-item">
+                        <a href="?lang=vi" class="dropdown-item" id="vi">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-circle avatar-image"
-                                     style="width: 18px; height: 18px; line-height: 18px;">
-                                    <img src="{{asset('assets/images/thumbs/fr_FR.png')}}" alt="">
+                                    style="width: 18px; height: 18px; line-height: 18px;">
+                                    <img src="{{ asset('assets/images/thumbs/vietnam.png') }}" alt="">
                                 </div>
-                                <span class="ms-2">French</span>
+                                <span class="ms-2">
+                                    {{ __('layout/header.lang-vi') }}
+                                </span>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
+
+            {{-- Profile --}}
             <div class="header-nav-item">
                 <div class="dropdown header-nav-item-select nav-profile">
                     <div class="toggle-wrapper" id="nav-profile-dropdown" data-bs-toggle="dropdown">
                         <div class="avatar avatar-circle avatar-image"
-                             style="width: 35px; height: 35px; line-height: 35px;">
+                            style="width: 35px; height: 35px; line-height: 35px;">
                             <img src="{{ asset('assets/images/avatars/thumb-1.jpg') }}" alt="">
                         </div>
                         <span class="fw-bold mx-1">{{ Auth::user()->name }}</span>
@@ -160,33 +176,45 @@
                                     <img src="{{ asset('assets/images/avatars/thumb-1.jpg') }}" alt="">
                                 </div>
                                 <div class="d-flex flex-column ms-1">
-                                    <span class="fw-bold text-dark">{{ Auth::user()->name }}</span>
-                                    <span class="font-size-sm">{{ Auth::user()->email }}</span>
+                                    <span class="fw-bold text-dark">
+                                        {{ Auth::user()->name }}
+                                    </span>
+                                    <span class="font-size-sm">
+                                        {{ Auth::user()->email }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <a href="javascript:void(0)" class="dropdown-item">
                             <div class="d-flex align-items-center">
                                 <i class="font-size-lg me-2 feather icon-user"></i>
-                                <span>Profile</span>
+                                <span>
+                                    {{ __('layout/header.profile') }}
+                                </span>
                             </div>
                         </a>
                         <a href="javascript:void(0)" class="dropdown-item">
                             <div class="d-flex align-items-center">
                                 <i class="font-size-lg me-2 feather icon-settings"></i>
-                                <span>Settings</span>
+                                <span>
+                                    {{ __('layout/header.settings') }}
+                                </span>
                             </div>
                         </a>
                         <a href="javascript:void(0)" class="dropdown-item">
                             <div class="d-flex align-items-center"><i
                                     class="font-size-lg me-2 feather icon-life-buoy"></i>
-                                <span>Support</span>
+                                <span>
+                                    {{ __('layout/header.support') }}
+                                </span>
                             </div>
                         </a>
                         <a href="{{ route('logout') }}" class="dropdown-item">
                             <div class="d-flex align-items-center">
                                 <i class="font-size-lg me-2 feather icon-power"></i>
-                                <span>Sign Out</span>
+                                <span>
+                                    {{ __('layout/header.sign-out') }}
+                                </span>
                             </div>
                         </a>
                     </div>

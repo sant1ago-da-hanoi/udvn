@@ -31,12 +31,4 @@ class LoginController extends Controller {
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
-
-    public function logout(Request $request): Redirector|Application|RedirectResponse {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('categories');
-    }
 }

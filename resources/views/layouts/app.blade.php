@@ -25,6 +25,7 @@
     </div>
 </div>
 @yield('modal')
+
 <!-- Core Vendors JS -->
 <script src="{{ asset('assets/js/vendors.min.js') }}"></script>
 

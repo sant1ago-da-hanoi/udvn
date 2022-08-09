@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Routing\Redirector;
 
 class CategoryController extends Controller {
     public function index(): Factory|View|Application {
@@ -26,11 +29,13 @@ class CategoryController extends Controller {
         return view('admin.categories.create');
     }
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request): Redirector|Application|RedirectResponse {
         $category_id = $request->input('category_id', 0);
         if ($category_id) {
             Category::destroy($category_id);
-            return redirect('categories.index')->with('msg', 'Category #{{ $category_id }} successfully deleted');
+            return redirect(route('category.index'))->with('msg', 'Category #{{ $category_id }} successfully deleted');
+        } else {
+            throw new ModelNotFoundException();
         }
     }
 }

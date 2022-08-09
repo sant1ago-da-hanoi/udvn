@@ -1,6 +1,12 @@
 <?php
 return [
-    'failed'   => 'Thông tin tài khoản không tìm thấy trong hệ thống.',
-    'password' => 'Mật khẩu.',
-    'throttle' => 'Vượt quá số lần đăng nhập cho phép. Vui lòng thử lại sau :seconds giây.',
+    'sign-in'   => 'Sign In',
+    'sign-in-description' => 'Sign in your account to continue',
+    'email'   => 'Email',
+    'password' => 'Password',
+    'password-forget' => 'Forget Password?',
+    'login-button' => 'Sign In',
+    'login-with' => 'or login with',
+    'new-user' => "Don't have an account yet?",
+    'sign-up-now' => 'Sign up now',
 ];
