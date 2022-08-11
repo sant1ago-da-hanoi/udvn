@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class Languague {
+class Language {
     /**
      * Handle an incoming request.
      *

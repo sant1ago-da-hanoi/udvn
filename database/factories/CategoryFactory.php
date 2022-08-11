@@ -16,14 +16,10 @@ class CategoryFactory extends Factory {
      * @return array<string, mixed>
      */
     public function definition(): array {
-        $name = fake()->text();
-        $path = Str::slug($name);
 
         return [
-            'name' => $name,
             'image_id' => fake()->numberBetween(1, 1000),
-            'path' => $path,
-            'description' => fake()->text(1000),
+            'path' => fake()->url(),
         ];
     }
 }

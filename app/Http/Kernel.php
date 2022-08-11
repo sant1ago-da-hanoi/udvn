@@ -4,11 +4,12 @@ namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
-use App\Http\Middleware\Languague;
+use App\Http\Middleware\Language;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
+use App\Http\Middleware\UserPermission;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -43,7 +44,7 @@ class Kernel extends HttpKernel {
         ValidatePostSize::class,
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
-        Languague::class,
+        Language::class,
     ];
 
     /**
@@ -86,5 +87,6 @@ class Kernel extends HttpKernel {
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
+        'udvn.auth' => UserPermission::class,
     ];
 }

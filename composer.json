@@ -7,12 +7,14 @@
     "require": {
         "php": "^8.1.6",
         "guzzlehttp/guzzle": "^7.2",
+        "cartalyst/sentinel": "^6.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/lang": "^10.0",
         "laravel/pint": "^1.0",
@@ -32,7 +34,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "helpers/functions.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

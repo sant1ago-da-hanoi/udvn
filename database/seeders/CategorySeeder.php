@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder {
@@ -15,7 +15,27 @@ class CategorySeeder extends Seeder {
     public function run(): void {
         Category::factory()
             ->count(100)
-            ->hasProducts(100)
+            ->has(
+                Product::factory()
+                    ->count(10)
+                    ->hasProductTranslations(1)
+            )
+            ->hasCategoryTranslations(1)
             ->create();
+
+        echo "\n Update categories path";
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $category->path = \Str::slug($category->translate('vi')->name);
+            $category->save();
+        }
+
+        echo "\n Update products slug";
+        $products = Product::all();
+
+        foreach ($products as $product) {
+            $product->slug = \Str::slug($product->translate('vi')->name);
+            $product->save();
+        }
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder {
@@ -13,14 +13,62 @@ class UserSeeder extends Seeder {
      * @return void
      */
     public function run(): void {
-        User::factory(10)->create();
+        $roles = [
+            [
+                'name' => 'Admin',
+                'slug' => 'admin',
+            ],
+            [
+                'name' => 'Editor',
+                'slug' => 'editor',
+            ],
+            [
+                'name' => 'User',
+                'slug' => 'user',
+            ],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'phone' => fake()->phoneNumber(),
-            'birthday' => fake()->date(),
-            'address' => fake()->address(),
-        ]);
+        Role::insert($roles);
+
+        $users = [
+            [
+                'first_name' => fake()->name(),
+                'email' => 'admin@example.com',
+                'phone' => fake()->phoneNumber(),
+                'birthday' => fake()->date(),
+                'address' => fake()->address(),
+            ],
+            [
+                'email' => 'editor@example.com',
+                'phone' => fake()->phoneNumber(),
+                'birthday' => fake()->date(),
+                'address' => fake()->address(),
+            ],
+            [
+                'email' => 'user@example.com',
+                'phone' => fake()->phoneNumber(),
+                'birthday' => fake()->date(),
+                'address' => fake()->address(),
+            ],
+        ];
+
+        foreach ($users as $userItem) {
+            $userItem['password'] = '1234567@';
+            $user = Sentinel::registerAndActivate($userItem);
+            switch ($userItem['email']) {
+                case 'admin@example.com':
+                    $role = Sentinel::findRoleBySlug('admin');
+                    $role->users()->attach($user);
+                    break;
+                case 'editor@example.com':
+                    $role = Sentinel::findRoleBySlug('editor');
+                    $role->users()->attach($user);
+                    break;
+                case 'user@example.com':
+                    $role = Sentinel::findRoleBySlug('user');
+                    $role->users()->attach($user);
+                    break;
+            }
+        }
     }
 }

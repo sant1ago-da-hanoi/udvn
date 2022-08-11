@@ -14,7 +14,15 @@ use Illuminate\Routing\Redirector;
 
 class CategoryController extends Controller {
     public function index(): Factory|View|Application {
-        $categories = Category::select(['id', 'name', 'path', 'created_at', 'updated_at'])
+        $categories = Category::select([
+            'categories.id',
+            'ct.name',
+            'path',
+            'created_at',
+            'updated_at',
+        ])
+            ->leftJoin('category_translations AS ct', 'category_id', 'categories.id')
+            ->where('lang', $this->lang)
             ->paginate();
         return view('admin.categories.index', compact('categories'));
     }

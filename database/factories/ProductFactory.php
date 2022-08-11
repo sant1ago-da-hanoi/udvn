@@ -16,14 +16,10 @@ class ProductFactory extends Factory {
      * @return array<string, mixed>
      */
     public function definition(): array {
-        $name = fake()->text();
-        $slug = Str::slug($name);
         return [
-            'name' => $name,
-            'slug' => $slug,
+            'slug' => fake()->url(),
             'quantity' => fake()->numberBetween(1, 1000),
             'price' => fake()->randomFloat(2, 1, 2000),
-            'description' => fake()->text(2000),
         ];
     }
 }

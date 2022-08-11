@@ -29,4 +29,15 @@ class Category extends Model {
     public function image(): BelongsTo {
         return $this->belongsTo(Image::class);
     }
+
+    public function categoryTranslations() {
+        return $this->hasMany(CategoryTranslation::class);
+    }
+
+    public function translate($lang = null) {
+        if (null == $lang) {
+            $lang = app()->getLocale();
+        }
+        return $this->categoryTranslations()->where('lang', $lang)->first();
+    }
 }

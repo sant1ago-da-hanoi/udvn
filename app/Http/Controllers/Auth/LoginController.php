@@ -9,9 +9,9 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Auth;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
+use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 
 class LoginController extends Controller {
     public function login(): Factory|View|Application {
@@ -21,14 +21,22 @@ class LoginController extends Controller {
     public function postLogin(LoginRequest $request): RedirectResponse {
         $credentials = $request->except('_token');
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        try {
+            if (Sentinel::authenticate($credentials)) {
+                $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'));
+                return redirect()->intended(route('dashboard'));
+            } else {
+                $msg = 'The provided credentials do not match our records.';
+            }
+        } catch (NotActivatedException $th) {
+            $msg = 'The user is not activated';
+        } catch (ThrottlingException $th) {
+            $msg = 'The user is banded in ' . round($th->getDelay() / 60) . ' minute';
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => $msg,
         ])->onlyInput('email');
     }
 }

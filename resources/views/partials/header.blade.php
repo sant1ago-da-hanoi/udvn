@@ -124,11 +124,7 @@
                     <div class="toggle-wrapper" id="nav-lang-dropdown" data-bs-toggle="dropdown">
                         <div class="avatar avatar-circle avatar-image"
                             style="width: 22px; height: 22px; line-height: 22px;">
-                            @if (!isset($_COOKIE['lang']) && $_COOKIE['lang'] == 'en')
-                                <img src="{{ asset('assets/images/thumbs/en_US.png') }}" alt="{{ __('layout/header.lang') }}">
-                            @else
-                                <img src="{{ asset('assets/images/thumbs/vietnam.png') }}" alt="{{ __('layout/header.lang') }}">
-                            @endif
+                            <img src="{{ asset(__('layout/header.lang-icon')) }}" alt="{{ __('layout/header.lang') }}">
                         </div>
                     </div>
                     <div class="dropdown-menu dropdown-menu-end">
@@ -166,7 +162,9 @@
                             style="width: 35px; height: 35px; line-height: 35px;">
                             <img src="{{ asset('assets/images/avatars/thumb-1.jpg') }}" alt="">
                         </div>
-                        <span class="fw-bold mx-1">{{ Auth::user()->name }}</span>
+                        <span class="fw-bold mx-1">
+                            {{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}
+                        </span>
                         <i class="feather icon-chevron-down"></i>
                     </div>
                     <div class="dropdown-menu dropdown-menu-end">
@@ -177,10 +175,10 @@
                                 </div>
                                 <div class="d-flex flex-column ms-1">
                                     <span class="fw-bold text-dark">
-                                        {{ Auth::user()->name }}
+                                        {{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}
                                     </span>
                                     <span class="font-size-sm">
-                                        {{ Auth::user()->email }}
+                                        {{ Sentinel::getUser()->email }}
                                     </span>
                                 </div>
                             </div>

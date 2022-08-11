@@ -9,4 +9,10 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected string $language;
+
+    public function __construct() {
+        $this->language = app()->getLocale();
+    }
 }
