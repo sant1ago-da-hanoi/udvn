@@ -38,6 +38,8 @@
                                         {{ __('form/login.sign-in-description') }}
                                     </p>
                                 </div>
+
+                                {{-- Login form --}}
                                 <form action="{{ route('login.post') }}" method="post">
                                     @csrf
 
@@ -108,7 +110,7 @@
                                 <div class="text-center mt-4">
                                     <p class="text-muted">
                                         {{ __('form/login.new-user') }}
-                                        <a href="/auth/register-1">
+                                        <a href="register">
                                             {{ __('form/login.sign-up-now') }}
                                         </a>
                                     </p>

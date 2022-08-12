@@ -34,7 +34,7 @@ class UserPermission {
         }
 
         #Check Access When User Is Not Admin
-        if ($user->inRole($role)) {
+        if ($user->inRole($roles)) {
             return $next($request);
         }
 

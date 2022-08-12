@@ -32,23 +32,23 @@ class UserSeeder extends Seeder {
 
         $users = [
             [
-                'first_name' => fake()->name(),
-                'email' => 'admin@example.com',
-                'phone' => fake()->phoneNumber(),
-                'birthday' => fake()->date(),
-                'address' => fake()->address(),
+                'name'      => fake()->name(),
+                'email'     => 'admin@example.com',
+                'phone'     => fake()->phoneNumber(),
+                'birthday'  => fake()->date(),
+                'address'   => fake()->address(),
             ],
             [
-                'email' => 'editor@example.com',
-                'phone' => fake()->phoneNumber(),
-                'birthday' => fake()->date(),
-                'address' => fake()->address(),
+                'email'     => 'editor@example.com',
+                'phone'     => fake()->phoneNumber(),
+                'birthday'  => fake()->date(),
+                'address'   => fake()->address(),
             ],
             [
-                'email' => 'user@example.com',
-                'phone' => fake()->phoneNumber(),
-                'birthday' => fake()->date(),
-                'address' => fake()->address(),
+                'email'     => 'user@example.com',
+                'phone'     => fake()->phoneNumber(),
+                'birthday'  => fake()->date(),
+                'address'   => fake()->address(),
             ],
         ];
 

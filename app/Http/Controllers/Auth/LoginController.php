@@ -15,7 +15,7 @@ use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 
 class LoginController extends Controller {
     public function login(): Factory|View|Application {
-        return view('login');
+        return view('auth.login');
     }
 
     public function postLogin(LoginRequest $request): RedirectResponse {

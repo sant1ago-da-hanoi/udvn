@@ -163,7 +163,7 @@
                             <img src="{{ asset('assets/images/avatars/thumb-1.jpg') }}" alt="">
                         </div>
                         <span class="fw-bold mx-1">
-                            {{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}
+                            {{ Sentinel::getUser()->name }}
                         </span>
                         <i class="feather icon-chevron-down"></i>
                     </div>
@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="d-flex flex-column ms-1">
                                     <span class="fw-bold text-dark">
-                                        {{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}
+                                        {{ Sentinel::getUser()->name }}
                                     </span>
                                     <span class="font-size-sm">
                                         {{ Sentinel::getUser()->email }}
